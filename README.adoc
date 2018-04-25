@@ -1,0 +1,3 @@
+= Scripts to provision an operational system with my gs-rest-service PoC
+
+Currently only works with Ubuntu 16.04.

@@ -1,0 +1,4 @@
+stop-gs-rest-service.sh
+uninstall-gs-rest-service-certificate.sh
+uninstall-gs-rest-service.sh
+uninstall-dotfiles.sh

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set +x
+
+export BASE_DIR=`cd "$(dirname "$0")"; pwd`
+cd "$BASE_DIR"
+
+config=config
+[ -r $config ] || config=$config.sample
+[ -r $config ] || { echo "$PWD/$config file not found! aborting ..."; exit 1; }
+
+echo "Loading configuration file $PWD/$config ..."
+source ./$config
+
+log() {
+  echo -e "$@" | tee -a "$LOG"
+}
+export -f log
+
+> "$LOG"
+
+script=$1
+if [ "$script" ]
+then
+  [ -r "$script" ] || exit 1
+  echo "Running script $script ..."
+  bash $script 
+  ret=$?
+  [ $ret = 0 ] || echo "Script fails with return $ret"
+else
+  log "Provision pipeline \"$PIPELINE\" started by $USER at $PWD ..."
+  while read script
+  do
+    bash $script
+    ret=$?
+    if [ $ret != 0 ]
+    then
+      log "Script $script returns $ret breaking the provisioning ..."
+      break
+    fi
+  done < $PIPELINE.pipeline
+  [ $ret = 0 ] && log "Provision finishes with success!"
+fi
+exit $ret

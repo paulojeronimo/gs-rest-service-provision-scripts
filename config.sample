@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+PIPELINE=${PIPELINE:-install}
+
+# LOG file name. Don't use spaces inside it!
+export LOG=$BASE_DIR/provision.log
+
+export op="gs-rest-service"
+export utility_packages="tree lsof"
+export dotfiles_repo=https://github.com/paulojeronimo/dotfiles
+export https_enabled=false

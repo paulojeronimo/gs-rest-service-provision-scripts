@@ -1,0 +1,11 @@
+update-packages-cache.sh
+install-utility-packages.sh
+install-dotfiles.sh
+install-jdk.sh
+install-gs-rest-service.sh
+install-gs-rest-service-certificate.sh
+create-gs-rest-service-scripts.sh
+configure-https-on-gs-rest-service.sh
+start-gs-rest-service.sh
+configure-port-redirections.sh
+save-iptables-rules.sh
